@@ -8,7 +8,7 @@ def max(a, b):
     return b
 
 def print_tests(p, filename, method):
-    with open(filename, "w") as f:
+    with open('./data/'+filename, "w") as f:
         print('length', file=f, end=";")
         print('revenue', file=f, end=";")
         print('time', file=f)
@@ -85,19 +85,3 @@ def print_cut_rod_solution(p, n):
         print(s[n])
         n = n - s[n]
 
-def main():
-    p = [0, 1, 5, 8, 9, 10, 17, 20, 24, 30]
-    rand_p = [randint(0,10000) for _ in range(0,31)]
-    rand_p[0] = 0
-
-    print_tests(p, 'naive_p_book.csv', cut_rod)
-    print_tests(p, 'bottom_up_p_book.csv', bottom_up_cut_rod)
-    print_tests(rand_p, 'naive_p_rand.csv', cut_rod)
-    print_tests(rand_p, 'bottom_up_p_rand.csv', bottom_up_cut_rod)
-
-    with open("used_ps.txt", "w") as f:
-        print(p, file=f)
-        print(rand_p, file=f)
-
-if __name__=='__main__':
-    main()
