@@ -8,7 +8,7 @@ def main():
     #print_tests(p, 'bottom_up_p_book.csv', bottom_up_cut_rod)
 
     # Random table:
-    for n in range(51,1001,100):
+    for n in [50, 150, 250 , 500]:
         rand_p = [randint(0,10000) for _ in range(0,n)]
         rand_p[0] = 0
 
