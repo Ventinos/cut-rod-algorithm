@@ -59,4 +59,4 @@ def length_time_comparisson_plot(filename1, filename2):
     plt.savefig('./imgs/'+filename1 + ' X ' + filename2 + '.png', dpi=300)
     plt.clf()
 
-length_time_comparisson_plot('naive_p_rand.csv', 'bottom_up_p_rand.csv')
+length_time_comparisson_plot('naive_p_rand37.csv', 'bottom_up_p_rand37.csv')
