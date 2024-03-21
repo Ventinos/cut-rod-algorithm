@@ -93,7 +93,7 @@ def main():
     print_tests(p, 'naive_p_book.csv', cut_rod)
     print_tests(p, 'bottom_up_p_book.csv', bottom_up_cut_rod)
     print_tests(rand_p, 'naive_p_rand.csv', cut_rod)
-    print_tests(rand_p, 'bottom_up_cut_rod.csv', bottom_up_cut_rod)
+    print_tests(rand_p, 'bottom_up_p_rand.csv', bottom_up_cut_rod)
 
     with open("used_ps.txt", "w") as f:
         print(p, file=f)
