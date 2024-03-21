@@ -7,6 +7,20 @@ def max(a, b):
         return a
     return b
 
+def print_tests(p, filename, method):
+    with open(filename, "w") as f:
+        print('length', file=f, end=";")
+        print('revenue', file=f, end=";")
+        print('time', file=f)
+        for n in range(0, len(p)):
+            start = time()
+            r = method(p,n)
+            end = time()
+            print(n, file=f, end=";")
+            print(r, file=f, end=";")
+            print(end - start, file=f)
+
+
 # top-bottom naive recursive implementation:
 def cut_rod(p, n):
     if n == 0:
@@ -14,10 +28,7 @@ def cut_rod(p, n):
 
     q = -1
     for i in range(1, n+1):
-        if(i < len(p)):
-            q = max(q, p[i] + cut_rod(p, n-i))
-        else:
-            q = max(q, cut_rod(p, i) + cut_rod(p, n-i))
+        q = max(q, p[i] + cut_rod(p, n-i))
 
     return q
 
@@ -35,10 +46,7 @@ def memoized_cut_rod_aux(p, n, r):
     else:
         q = -1
         for i in range(1, n+1):
-            if(i < len(p)):
-                q = max(q, p[i] + memoized_cut_rod_aux(p, n-i, r))
-            else:
-                q = max(q, memoized_cut_rod_aux(p, i, r) + memoized_cut_rod_aux(p, n-i, r))
+            q = max(q, p[i] + memoized_cut_rod_aux(p, n-i, r))
 
     r[n] = q
     return q
@@ -50,10 +58,7 @@ def bottom_up_cut_rod(p, n):
     for j in range(1, n+1):
         q = -1
         for i in range(1, j+1):
-            if(i < len(p)):
-                q = max(q, p[i] + r[j - i])
-            else:
-                q = max(q, r[i] + r[j - i])
+            q = max(q, p[i] + r[j - i])
         r[j] = q
 
     return r[n]
@@ -81,17 +86,18 @@ def print_cut_rod_solution(p, n):
         n = n - s[n]
 
 def main():
-    #TODO: arrumar cut_rod(p, n)
     p = [0, 1, 5, 8, 9, 10, 17, 20, 24, 30]
-    p1 = [0, 2, 1, 3]
-    rand_p = [randint(0,10000) for _ in range(0,50)]
+    rand_p = [randint(0,10000) for _ in range(0,31)]
     rand_p[0] = 0
-    #for n in range(0, 1001):
-        #start = time()
-    print(bottom_up_cut_rod(p, 4))
-        #end = time()
-        #print(end - start)
 
+    print_tests(p, 'naive_p_book.csv', cut_rod)
+    print_tests(p, 'bottom_up_p_book.csv', bottom_up_cut_rod)
+    print_tests(rand_p, 'naive_p_rand.csv', cut_rod)
+    print_tests(rand_p, 'bottom_up_cut_rod.csv', bottom_up_cut_rod)
+
+    with open("used_ps.txt", "w") as f:
+        print(p, file=f)
+        print(rand_p, file=f)
 
 if __name__=='__main__':
     main()
