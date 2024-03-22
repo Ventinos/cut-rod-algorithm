@@ -3,12 +3,12 @@ from plotting import *
 
 def main():
     # Book price table:
-    #p = [0, 1, 5, 8, 9, 10, 17, 20, 24, 30]
+    #p = [0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30]
     #print_tests(p, 'naive_p_book.csv', cut_rod)
     #print_tests(p, 'bottom_up_p_book.csv', bottom_up_cut_rod)
 
     # Random table:
-    for n in [20, 30, 37]:
+    for n in [20, 30]:
         rand_p = [randint(0,10000) for _ in range(0,n)]
         rand_p[0] = 0
 

@@ -29,7 +29,7 @@ def cut_rod(p, n):
     q = -1
     for i in range(1, n+1):
         q = max(q, p[i] + cut_rod(p, n-i))
-
+        
     return q
 
 # top-down with memoization implementation:
